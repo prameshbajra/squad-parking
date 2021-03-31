@@ -1,6 +1,7 @@
 import os
+import sys
 
-from utilities.core_logic import create_parking_slots, park_vechile, get_slot_number_by_drivers_age, get_slot_number_by_vehicle_id, get_vehicle_ids_by_drivers_age, clear_parking_space
+from utilities.core_logic import get_parking_slot, create_parking_slots, park_vechile, get_slot_number_by_drivers_age, get_slot_number_by_vehicle_id, get_vehicle_ids_by_drivers_age, clear_parking_space
 
 
 def process_parking(command, value):
@@ -12,21 +13,27 @@ def process_parking(command, value):
     """
     if (command == "create_parking_lot"):
         create_parking_slots(value)
-    elif (command == "park"):
-        unpacked_values = value.split(" ")
-        vehicle_id = unpacked_values[0]
-        drivers_age = unpacked_values[2]
-        park_vechile(vehicle_id, drivers_age)
-    elif (command == "slot_numbers_for_driver_of_age"):
-        get_slot_number_by_drivers_age(value)
-    elif (command == "slot_number_for_car_with_number"):
-        get_slot_number_by_vehicle_id(value)
-    elif (command == "vehicle_registration_number_for_driver_of_age"):
-        get_vehicle_ids_by_drivers_age(value)
-    elif (command == "leave"):
-        clear_parking_space(value)
+    if (len(get_parking_slot()) > 0):
+        if (command == "park"):
+            unpacked_values = value.split(" ")
+            vehicle_id = unpacked_values[0]
+            drivers_age = unpacked_values[2]
+            park_vechile(vehicle_id, drivers_age)
+        elif (command == "slot_numbers_for_driver_of_age"):
+            get_slot_number_by_drivers_age(value)
+        elif (command == "slot_number_for_car_with_number"):
+            get_slot_number_by_vehicle_id(value)
+        elif (command == "vehicle_registration_number_for_driver_of_age"):
+            get_vehicle_ids_by_drivers_age(value)
+        elif (command == "leave"):
+            clear_parking_space(value)
+        else:
+            print("Command not valid. Skipping this command !")
     else:
-        print("Command not valid. Skipping this command !")
+        print(
+            "Parking slot has not been created yet. Please create a parking slot using: Create_parking_lot command before you start."
+        )
+        sys.exit(0)
 
 
 def process_lines(lines):

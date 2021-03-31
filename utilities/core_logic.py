@@ -144,3 +144,7 @@ def clear_parking_space(slot_number):
             f"Vehicle_id : {vehicle_id} has left the parking area. Slot number : {slot_number} is vacant now."
         )
     return slot_number
+
+
+def get_parking_slot():
+    return parking_slots
