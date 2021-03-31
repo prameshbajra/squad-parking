@@ -10,10 +10,10 @@ def create_parking_slots(number_of_slots):
     Returns:
         Boolean: Returns True if space is created, else False.
     """
-    number_of_slots = int(number_of_slots)
     if (number_of_slots is None or number_of_slots == 0):
         print(f"Cannot create parking slots. Please try again.")
         return False
+    number_of_slots = int(number_of_slots)
     if (isinstance(number_of_slots, int) and number_of_slots > 0):
         for i in range(number_of_slots):
             parking_slots[i + 1] = None
@@ -36,12 +36,12 @@ def park_vechile(vehicle_id, driver_age):
     Returns:
         Boolean: Return True if the parking space is alloted, else False.
     """
-    driver_age = int(driver_age)
-    if (vehicle_id is None or driver_age is None or driver_age <= 0):
+    if (vehicle_id is None or driver_age is None or int(driver_age) <= 0):
         print(
             f"Cannot add vehicle : {vehicle_id} with drivers age : {driver_age}. Make sure you have entered valid age and vehicle id."
         )
         return False
+    driver_age = int(driver_age)
     if (16 > driver_age and driver_age > 120):
         print(
             f"The drivers age is suspicious. Please verify the vehicle. The record has been saved anyways."
@@ -85,6 +85,8 @@ def get_vehicle_ids_by_drivers_age(drivers_age):
         list: Returns list of number plates having drivers with same age. If not driver with that age exists then empty list is returned.
     """
     vehicle_ids = []
+    if (drivers_age is None):
+        return vehicle_ids
     drivers_age = int(drivers_age)
     for slot_number, details in parking_slots.items():
         if (details is not None and int(details["driver_age"]) == drivers_age):
@@ -123,6 +125,8 @@ def get_slot_number_by_drivers_age(drivers_age):
         list: A list of slot numbers for which drivers of that age is present.
     """
     slot_numbers_for_age = []
+    if (drivers_age is None):
+        return slot_numbers_for_age
     drivers_age = int(drivers_age)
     for slot_number, details in parking_slots.items():
         if (details is not None and int(details["driver_age"]) == drivers_age):
@@ -143,14 +147,20 @@ def clear_parking_space(slot_number):
     slot_number = int(slot_number)
     if (parking_slots[slot_number] is None):
         print(f"Parking slot number : {slot_number} is already vacant.")
+        return False
     else:
         vehicle_id = parking_slots[slot_number]["vehicle_id"]
         parking_slots[slot_number] = None
         print(
             f"Vehicle_id : {vehicle_id} has left the parking area. Slot number : {slot_number} is vacant now."
         )
-    return slot_number
+        return True
 
 
 def get_parking_slot():
+    """Returns the parking slot object
+
+    Returns:
+        dict: Parking Slot Object
+    """
     return parking_slots
