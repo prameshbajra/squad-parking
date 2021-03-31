@@ -12,17 +12,18 @@ def create_parking_slots(number_of_slots):
     """
     number_of_slots = int(number_of_slots)
     if (number_of_slots is None or number_of_slots == 0):
-        print(f"Cannot create parking lots. Please try again.")
+        print(f"Cannot create parking slots. Please try again.")
         return False
-    if (isinstance(number_of_slots, float)):
-        number_of_slots = int(number_of_slots)
+    if (isinstance(number_of_slots, int) and number_of_slots > 0):
+        for i in range(number_of_slots):
+            parking_slots[i + 1] = None
+        print(f"Created Parking of {number_of_slots} slots.")
+        return True
+    else:
         print(
-            f"Cannot create slots with decimal numbers. Rounding it off to : {number_of_slots}"
+            f"Cannot create slots with {number_of_slots} as input. Please try again. Maybe with a valid number?"
         )
-    for i in range(number_of_slots):
-        parking_slots[i + 1] = None
-    print(f"Created Parking of {number_of_slots} slots.")
-    return True
+        return False
 
 
 def park_vechile(vehicle_id, driver_age):
@@ -35,11 +36,16 @@ def park_vechile(vehicle_id, driver_age):
     Returns:
         Boolean: Return True if the parking space is alloted, else False.
     """
-    if (vehicle_id is None or driver_age is None or driver_age == 0):
+    driver_age = int(driver_age)
+    if (vehicle_id is None or driver_age is None or driver_age <= 0):
         print(
             f"Cannot add vehicle : {vehicle_id} with drivers age : {driver_age}. Make sure you have entered valid age and vehicle id."
         )
         return False
+    if (16 > driver_age and driver_age > 120):
+        print(
+            f"The drivers age is suspicious. Please verify the vehicle. The record has been saved anyways."
+        )
     is_entry_successful = False
     vehicle_ids = []
     for slot_number, details in parking_slots.items():

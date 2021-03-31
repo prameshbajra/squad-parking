@@ -13,6 +13,7 @@ def process_parking(command, value):
     """
     if (command == "create_parking_lot"):
         create_parking_slots(value)
+        return True
     if (len(get_parking_slot()) > 0):
         if (command == "park"):
             unpacked_values = value.split(" ")
@@ -28,7 +29,9 @@ def process_parking(command, value):
         elif (command == "leave"):
             clear_parking_space(value)
         else:
-            print("Command not valid. Skipping this command !")
+            print(
+                f"Command not valid. Skipping this command ! \n {command} \n{value}"
+            )
     else:
         print(
             "Parking slot has not been created yet. Please create a parking slot using: Create_parking_lot command before you start."
