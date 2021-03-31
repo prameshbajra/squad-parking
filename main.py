@@ -9,6 +9,8 @@ def start_parking_program():
         parse_input_file(file_path)
     except Exception:
         print("Oops! The program broke. Please try running it again.")
+        print(traceback.format_exc())
+
 
 if __name__ == '__main__':
     start_parking_program()
