@@ -3,6 +3,9 @@ import traceback
 from utilities.file_operations import parse_input_file
 
 def start_parking_program():
+    """
+    Takes in the path of the file as input, and starts the execution.
+    """
     try:
         print("========== Welcome to Squad Parking. ========== \n")
         file_path = input("Enter the path for the file (should be .txt) you want to run : ")

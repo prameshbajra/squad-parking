@@ -4,6 +4,12 @@ from utilities.core_logic import create_parking_slots, park_vechile, get_slot_nu
 
 
 def process_parking(command, value):
+    """Categorize the execution based on the commands mentioned. Different methods are called based on the commands provided.
+
+    Args:
+        command (str): Action that the command want to perform.
+        value (str): Value for which the action should be run with.
+    """
     if (command == "create_parking_lot"):
         create_parking_slots(value)
     elif (command == "park"):
@@ -20,10 +26,15 @@ def process_parking(command, value):
     elif (command == "leave"):
         clear_parking_space(value)
     else:
-        print("Command not valid. Skipping !")
+        print("Command not valid. Skipping this command !")
 
 
 def process_lines(lines):
+    """Takes in the lines and extracts command and values from each line, then starts parking logic.
+
+    Args:
+        lines (list): All lines present in the files as list. This includes all valid and invalid command. i.e. Blank lines are also included.
+    """
     for index, line in enumerate(lines):
         command = (line.split(" ", 1)[0]).lower()
         value = (line.split(" ", 1)[1]).lower()
@@ -35,6 +46,12 @@ def process_lines(lines):
 
 
 def parse_input_file(file_path):
+    """Based on the path of file provided, checks whether is the file exists, is valid and is .txt format.
+    This method also removes any blank lines present on the file.       
+
+    Args:
+        file_path (str): Path of the file that is to be used.
+    """
     if (os.path.exists(file_path) and os.path.isfile(file_path)
             and ".txt" in file_path):
         lines = open(file_path).read().splitlines()
@@ -44,4 +61,3 @@ def parse_input_file(file_path):
         print(
             f"Make sure the file exists and is valid. We only accept .txt files for now."
         )
-        return False
