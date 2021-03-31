@@ -15,7 +15,7 @@ def process_parking(command, value):
         get_slot_number_by_drivers_age(value)
     elif (command == "slot_number_for_car_with_number"):
         get_slot_number_by_vehicle_id(value)
-    elif (command == "ehicle_registration_number_for_driver_of_age"):
+    elif (command == "vehicle_registration_number_for_driver_of_age"):
         get_vehicle_ids_by_drivers_age(value)
     elif (command == "leave"):
         clear_parking_space(value)

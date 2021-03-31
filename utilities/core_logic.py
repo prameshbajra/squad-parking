@@ -39,7 +39,7 @@ def park_vechile(vehicle_id, driver_age):
                 }
                 is_entry_successful = True
                 print(
-                    f"Vehicle number : {vehicle_id} has been granted {slot_number} slot."
+                    f"Vehicle number : {vehicle_id} has been granted slot number {slot_number}."
                 )
                 break
         else:
@@ -56,7 +56,7 @@ def get_vehicle_ids_by_drivers_age(drivers_age):
     vehicle_ids = []
     drivers_age = int(drivers_age)
     for slot_number, details in parking_slots.items():
-        if (details is not None and details["driver_age"] == drivers_age):
+        if (details is not None and int(details["driver_age"]) == drivers_age):
             vehicle_ids.append(details["vehicle_id"])
     if (len(vehicle_ids) > 0):
         print(vehicle_ids)
@@ -78,7 +78,7 @@ def get_slot_number_by_drivers_age(drivers_age):
     slot_numbers_for_age = []
     drivers_age = int(drivers_age)
     for slot_number, details in parking_slots.items():
-        if (details is not None and details["driver_age"] == drivers_age):
+        if (details is not None and int(details["driver_age"]) == drivers_age):
             slot_numbers_for_age.append(slot_number)
     if (len(slot_numbers_for_age) > 0):
         print(slot_numbers_for_age)
