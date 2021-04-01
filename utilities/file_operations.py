@@ -29,9 +29,8 @@ def process_parking(command, value):
         elif (command == "leave"):
             clear_parking_space(value)
         else:
-            print(
-                f"Command not valid. Skipping this command ! \n {command} \n{value}"
-            )
+            print(f"Command not valid. Skipping this command !")
+        return True
     else:
         print(
             "Parking slot has not been created yet. Please create a parking slot using: Create_parking_lot command before you start."
@@ -45,14 +44,17 @@ def process_lines(lines):
     Args:
         lines (list): All lines present in the files as list. This includes all valid and invalid command. i.e. Blank lines are also included.
     """
-    for index, line in enumerate(lines):
-        command = (line.split(" ", 1)[0]).lower()
-        value = (line.split(" ", 1)[1]).lower()
-        if (command is None or value is None):
-            print(
-                f"Line : {line} is invalid. Please correct it and run again.")
-        else:
-            process_parking(command, value)
+    try:
+        for index, line in enumerate(lines):
+            command = (line.split(" ", 1)[0]).lower()
+            value = (line.split(" ", 1)[1]).lower()
+            if (command is None or value is None):
+                print(
+                    f"Line : {line} is invalid. Please correct it and run again.")
+            else:
+                process_parking(command, value)
+    except Exception:
+        print(f"Cannot read the lines. Is it formatted properly?")
 
 
 def parse_input_file(file_path):
@@ -62,6 +64,7 @@ def parse_input_file(file_path):
     Args:
         file_path (str): Path of the file that is to be used.
     """
+    print(file_path)
     if (os.path.exists(file_path) and os.path.isfile(file_path)
             and ".txt" in file_path):
         lines = open(file_path).read().splitlines()
