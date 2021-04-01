@@ -6,9 +6,13 @@ A general solution for parking lot problem.
 
 Clone this repo and you are set to go.
 
+---
+
 ### INSTALLATION 
 
 There are no additional dependencies for this to run. This is plain Python (3.8). You do not need to create a virtual environment just to run this. **YAY!**. This is system agnostic and will work on any system as long as Python is installed.
+
+---
 
 ### Some additional tools used
 
@@ -17,6 +21,8 @@ There are no additional dependencies for this to run. This is plain Python (3.8)
 - IDE: VsCode
 - Python Server: Microsoft
 - Python Verison: 3.8
+
+---
 
 ### How do I run this?
 
@@ -29,6 +35,8 @@ python main.py
 ```
 
 this will ask you to enter the file (path of where your file is located, including the file name with txt extension). Enter the file path and press enter to proceed with execution.
+
+---
 
 ### What about the test cases?
 
@@ -56,11 +64,13 @@ python -m unittest tests/<test_filename>.py -b
 
 > Note: There are some sample input files in `input` directory. These are used for test cases.
 
+---
 
 ### Gotchas/Things to note
 
 - All the content is processed in small cases. i.e. For example: number plate: `AH-01-KJ-0001` will be processed and shown as `ah-01-kj-0001`
 
+---
 
 ### Demo? Sure.
 
