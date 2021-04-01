@@ -8,7 +8,7 @@ Clone this repo and you are set to go.
 
 ### INSTALLATION 
 
-There are no additional dependencies for this to run. This is plain Python (3.8). You do not need to create a virtual environment just to run this. **YAY!**
+There are no additional dependencies for this to run. This is plain Python (3.8). You do not need to create a virtual environment just to run this. **YAY!**. This is system agnostic and will work on any system as long as Python is installed.
 
 ### Some additional tools used
 
@@ -54,6 +54,8 @@ Also, if you wish to run individual test suite then you can run:
 python -m unittest tests/<test_filename>.py -b
 ```
 
+> Note: There are some sample input files in `input` directory. These are used for test cases.
+
 
 ### Gotchas/Things to note
 
@@ -63,3 +65,5 @@ python -m unittest tests/<test_filename>.py -b
 ### Demo? Sure.
 
 Take a look at the video below to get an Idea of how the program works.
+
+<img src="./SquadParking.gif" />
